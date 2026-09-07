@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
+@theme {
+  --color-p3-blue-dark: #020a17;
+  --color-p3-blue: #003B73;
+  --color-p3-cyan: #00e5ff;
+  --color-p3-yellow: #ffea00;
+  --color-p3-black: #000000;
+  --color-p3-white: #ffffff;
+  
+  --font-sans: var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: var(--color-p3-blue-dark);
+  --foreground: var(--color-p3-white);
+  --accent: var(--color-p3-cyan);
+  --hover: var(--color-p3-yellow);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--color-p3-cyan);
+  color: var(--color-p3-black);
+}
+
+/* Utilities for shapes */
+@utility clip-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+}
+
+@utility clip-slanted {
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
 }
