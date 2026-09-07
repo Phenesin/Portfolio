@@ -17,13 +17,13 @@ export function AppShell({ children }: { children: ReactNode }) {
         {/* Left Sidebar */}
         <aside className="w-full md:w-80 flex-shrink-0 flex flex-col">
           <header className="mb-12">
-            <h1 className="text-5xl font-black tracking-tighter text-p3-white mb-2 leading-none uppercase mix-blend-difference">
-              SID
+            <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-p3-black mb-2 leading-none uppercase">
+              SIDDHARTHA<br />MANU
             </h1>
-            <h2 className="text-xl font-bold text-p3-cyan tracking-widest uppercase">
+            <h2 className="text-xl font-bold text-p3-white tracking-widest uppercase drop-shadow-md">
               Software Developer
             </h2>
-            <div className="mt-4 text-xs font-mono text-p3-blue-dark bg-p3-cyan inline-block px-2 py-1 uppercase font-bold tracking-widest">
+            <div className="mt-4 text-xs font-mono text-p3-white bg-p3-black inline-block px-2 py-1 uppercase font-bold tracking-widest">
               Machine Learning / Backend / Systems / Experiments
             </div>
           </header>

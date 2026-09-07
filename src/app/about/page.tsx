@@ -5,7 +5,7 @@ export default function About() {
   return (
     <div className="h-full flex flex-col pt-12">
       <AnimatedText 
-        text="ABOUT SID"
+        text="ABOUT ME"
         className="text-4xl md:text-6xl font-black text-p3-white mb-8 border-b-4 border-p3-cyan pb-2 inline-block"
       />
       

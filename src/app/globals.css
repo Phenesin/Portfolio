@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-p3-blue-dark: #020a17;
-  --color-p3-blue: #003B73;
-  --color-p3-cyan: #00e5ff;
+  --color-p3-blue-dark: #00b8fa; /* Bright cyan background from reference */
+  --color-p3-blue: #0096cc;
+  --color-p3-cyan: #ffffff; /* Use white as the accent on bright blue */
   --color-p3-yellow: #ffea00;
   --color-p3-black: #000000;
   --color-p3-white: #ffffff;
@@ -14,8 +14,8 @@
 
 :root {
   --background: var(--color-p3-blue-dark);
-  --foreground: var(--color-p3-white);
-  --accent: var(--color-p3-cyan);
+  --foreground: var(--color-p3-black);
+  --accent: var(--color-p3-black);
   --hover: var(--color-p3-yellow);
 }
 
