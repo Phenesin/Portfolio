@@ -26,10 +26,15 @@ export function ParallaxShapes() {
   const y3 = useTransform(smoothY, [-1, 1], [-120, 120]);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
+    const timeoutId = setTimeout(() => {
+      setIsMobile(window.innerWidth < 768);
+    }, 0);
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   useEffect(() => {

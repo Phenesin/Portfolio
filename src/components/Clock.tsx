@@ -6,11 +6,14 @@ export function Clock() {
   const [time, setTime] = useState<Date | null>(null);
 
   useEffect(() => {
-    setTime(new Date());
+    const timeout = setTimeout(() => setTime(new Date()), 0);
     const interval = setInterval(() => {
       setTime(new Date());
     }, 1000);
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(interval);
+    };
   }, []);
 
   if (!time) return null;

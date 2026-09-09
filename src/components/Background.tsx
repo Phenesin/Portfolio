@@ -4,21 +4,24 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const FloatingParticles = () => {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const [particles, setParticles] = useState<{id: number, size: number, left: string, duration: number, delay: number, drift: number}[]>([]);
 
-  if (!mounted) return null;
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const newParticles = Array.from({ length: 25 }).map((_, i) => ({
+        id: i,
+        size: Math.random() * 15 + 5,
+        left: `${Math.random() * 100}%`,
+        duration: Math.random() * 15 + 10,
+        delay: Math.random() * -20,
+        drift: Math.random() * 40 - 20,
+      }));
+      setParticles(newParticles);
+    }, 0);
+    return () => clearTimeout(timeout);
+  }, []);
 
-  // Use a deterministic seed-like approach based on index so SSR and CSR match if we didn't use mounted,
-  // but since we are using mounted, random is perfectly fine.
-  const particles = Array.from({ length: 25 }).map((_, i) => ({
-    id: i,
-    size: Math.random() * 15 + 5,
-    left: `${Math.random() * 100}%`,
-    duration: Math.random() * 15 + 10,
-    delay: Math.random() * -20, // Negative delay so they start immediately distributed
-    drift: Math.random() * 40 - 20,
-  }));
+  if (particles.length === 0) return null;
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">

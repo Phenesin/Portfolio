@@ -1,19 +1,19 @@
 "use client";
 
-import { projects } from "@/data/projects";
 import { AnimatedText } from "@/components/AnimatedText";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useAudio } from "@/components/AudioManager";
+import { Project } from "@/types";
 
-export default function Projects() {
+export default function Projects({ projects }: { projects: Project[] }) {
   const { playHover, playClick } = useAudio();
 
   return (
     <div className="h-full flex flex-col pt-12">
       <AnimatedText 
         text="PROJECTS"
-        className="text-4xl md:text-6xl font-black text-p3-white mb-12 border-b-4 border-p3-cyan pb-2 inline-block"
+        className="text-fluid-h1 font-black text-p3-white mb-12 border-b-4 border-p3-cyan pb-2 inline-block"
       />
       
       <div className="flex flex-col gap-4">

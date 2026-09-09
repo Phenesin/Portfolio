@@ -1,12 +1,12 @@
-import { profile } from "@/data/profile";
 import { AnimatedText } from "@/components/AnimatedText";
+import { Profile } from "@/types";
 
-export default function About() {
+export default function About({ profile }: { profile: Profile }) {
   return (
     <div className="h-full flex flex-col pt-12">
       <AnimatedText 
         text="ABOUT ME"
-        className="text-4xl md:text-6xl font-black text-p3-white mb-8 border-b-4 border-p3-cyan pb-2 inline-block"
+        className="text-fluid-h1 font-black text-p3-white mb-8 border-b-4 border-p3-cyan pb-2 inline-block"
       />
       
       <div className="space-y-6 max-w-2xl bg-p3-blue-dark/80 p-8 border-l-4 border-p3-yellow shadow-[8px_8px_0_0_rgba(0,229,255,0.2)]">

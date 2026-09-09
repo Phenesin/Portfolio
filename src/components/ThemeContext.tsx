@@ -12,7 +12,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [isDarkHour, setIsDarkHour] = useState(false);
-  const { playHover, playClick } = useAudio(); // Or a custom ominous sound if available
+  const { playClick } = useAudio(); // Or a custom ominous sound if available
 
   useEffect(() => {
     // Apply class to html tag for global CSS variable switching

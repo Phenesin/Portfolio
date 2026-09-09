@@ -14,9 +14,6 @@ export function ThemeToggle() {
           ? "bg-p3-black border border-p3-yellow text-p3-yellow shadow-[0_0_15px_#ff003c]" 
           : "bg-p3-black text-p3-cyan border border-p3-cyan shadow-[0_0_10px_#00b8fa]"
       }`}
-      style={{
-        clipPath: "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)"
-      }}
     >
       <motion.div
         animate={{ rotate: isDarkHour ? 180 : 0 }}

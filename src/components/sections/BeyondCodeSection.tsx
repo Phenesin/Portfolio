@@ -1,12 +1,12 @@
-import { activities } from "@/data/activities";
 import { AnimatedText } from "@/components/AnimatedText";
+import { Activity } from "@/types";
 
-export default function BeyondCode() {
+export default function BeyondCode({ activities }: { activities: Activity[] }) {
   return (
     <div className="h-full flex flex-col pt-12">
       <AnimatedText 
         text="BEYOND CODE"
-        className="text-4xl md:text-6xl font-black text-p3-white mb-12 border-b-4 border-p3-cyan pb-2 inline-block"
+        className="text-fluid-h1 font-black text-p3-white mb-12 border-b-4 border-p3-cyan pb-2 inline-block"
       />
       
       <div className="grid gap-12">

@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   description: "Portfolio of Siddhartha Manu (Dotachin), Software Developer specializing in Machine Learning, Backend Systems, and Technical Experiments.",
 };
 
+import { profile } from "@/data/profile";
+import { navItems } from "@/data/navigation";
+
+import { LoadingScreen } from "@/components/LoadingScreen";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,8 +36,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
     >
       <body className="flex flex-col bg-p3-blue-dark">
+        <LoadingScreen />
         <ThemeProvider>
-          <AppShell>
+          <AppShell profile={profile} navItems={navItems}>
             {children}
           </AppShell>
         </ThemeProvider>

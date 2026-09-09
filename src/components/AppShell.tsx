@@ -8,8 +8,17 @@ import { ThemeToggle } from "./ThemeToggle";
 import { Background } from "./Background";
 import { CustomCursor } from "./CustomCursor";
 import { ParallaxShapes } from "./ParallaxShapes";
+import { NavItem, Profile } from "@/types";
 
-export function AppShell({ children }: { children: ReactNode }) {
+export function AppShell({ 
+  children, 
+  navItems, 
+  profile 
+}: { 
+  children: ReactNode;
+  navItems: NavItem[];
+  profile: Profile;
+}) {
   return (
     <>
       <Background />
@@ -21,17 +30,17 @@ export function AppShell({ children }: { children: ReactNode }) {
         <aside className="w-full md:w-80 flex-shrink-0 flex flex-col md:sticky md:top-12 self-start z-20">
           <header className="mb-12">
             <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-p3-white mb-2 leading-none uppercase">
-              SIDDHARTHA<br />MANU
+              {profile.name.split(' ')[0]}<br />{profile.name.split(' ')[1] || ''}
             </h1>
             <h2 className="text-xl font-bold text-p3-white tracking-widest uppercase drop-shadow-md">
-              Software Developer
+              {profile.tagline}
             </h2>
             <div className="mt-4 text-xs font-mono text-p3-white bg-p3-black inline-block px-2 py-1 uppercase font-bold tracking-widest">
-              Machine Learning / Backend / Systems / Experiments
+              {profile.categories.join(" / ")}
             </div>
           </header>
           
-          <Navigation />
+          <Navigation navItems={navItems} />
         </aside>
 
         {/* Main Content Area */}

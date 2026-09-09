@@ -1,12 +1,12 @@
-import { whatIBuild } from "@/data/skills";
 import { AnimatedText } from "@/components/AnimatedText";
+import { WhatIBuildItem } from "@/types";
 
-export default function WhatIBuild() {
+export default function WhatIBuild({ whatIBuild }: { whatIBuild: WhatIBuildItem[] }) {
   return (
     <div className="h-full flex flex-col pt-12 pb-24">
       <AnimatedText 
         text="WHAT I BUILD"
-        className="text-4xl md:text-6xl font-black text-p3-white mb-4 border-b-4 border-p3-cyan pb-2 inline-block"
+        className="text-fluid-h1 font-black text-p3-white mb-4 border-b-4 border-p3-cyan pb-2 inline-block"
       />
       
       <p className="text-xl font-bold text-p3-yellow uppercase tracking-widest mb-12">
@@ -14,7 +14,7 @@ export default function WhatIBuild() {
       </p>
       
       <div className="grid gap-8">
-        {whatIBuild.map((item, index) => (
+        {whatIBuild.map((item) => (
           <div 
             key={item.id} 
             className="flex flex-col md:flex-row gap-6 items-start bg-p3-blue-dark/60 border border-p3-cyan/20 p-8 clip-slanted relative overflow-hidden group hover:border-p3-yellow transition-colors duration-300"

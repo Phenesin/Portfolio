@@ -6,19 +6,9 @@ import { usePathname } from "next/navigation";
 import { useAudio } from "./AudioManager";
 import { motion } from "framer-motion";
 import clsx from "clsx";
+import { NavItem } from "@/types";
 
-const navItems = [
-  { id: "home", label: "HOME" },
-  { id: "about", label: "ABOUT ME" },
-  { id: "projects", label: "PROJECTS" },
-  { id: "tech-stack", label: "TECH STACK" },
-  { id: "research", label: "RESEARCH" },
-  { id: "what-i-build", label: "WHAT I BUILD" },
-  { id: "beyond-code", label: "BEYOND CODE" },
-  { id: "contact", label: "CONTACT" },
-];
-
-export function Navigation() {
+export function Navigation({ navItems }: { navItems: NavItem[] }) {
   const [activeId, setActiveId] = useState("home");
   const pathname = usePathname();
   const { playHover, playClick } = useAudio();
@@ -45,7 +35,7 @@ export function Navigation() {
     });
 
     return () => observer.disconnect();
-  }, [pathname]);
+  }, [pathname, navItems]);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     playClick();
@@ -79,16 +69,30 @@ export function Navigation() {
               }}
               transition={{ delay: index * 0.1 }}
               className={clsx(
-                "group relative flex items-center p-4 text-xl font-black tracking-widest transition-colors duration-200 clip-slanted cursor-pointer uppercase",
+                "group relative flex items-center p-4 text-xl font-black tracking-widest transition-colors duration-200 clip-slanted cursor-pointer uppercase overflow-hidden",
                 isActive 
                   ? "bg-p3-cyan text-p3-black" 
                   : "bg-p3-blue/60 text-p3-white hover:bg-p3-black hover:text-p3-yellow backdrop-blur-md border-l-8 border-transparent hover:border-p3-yellow shadow-lg"
               )}
             >
+              {/* Radial fading dotted overlay */}
+              <div 
+                className={clsx(
+                  "absolute inset-0 z-0 pointer-events-none transition-opacity duration-300",
+                  isActive ? "opacity-80" : "opacity-0 group-hover:opacity-70"
+                )}
+                style={{
+                  backgroundImage: "radial-gradient(circle, currentColor 1.5px, transparent 1.5px)",
+                  backgroundSize: "6px 6px",
+                  maskImage: "radial-gradient(ellipse at top left, black 0%, transparent 70%)",
+                  WebkitMaskImage: "radial-gradient(ellipse at top left, black 0%, transparent 70%)"
+                }}
+              />
+              
               {isActive && (
                 <motion.div 
                   layoutId="active-indicator"
-                  className="absolute left-0 top-0 bottom-0 w-2 bg-p3-black" 
+                  className="absolute left-0 top-0 bottom-0 w-2 bg-p3-black z-10" 
                 />
               )}
               <span className="relative z-10">{isActive ? `> ${item.label}` : item.label}</span>

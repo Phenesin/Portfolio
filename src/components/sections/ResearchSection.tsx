@@ -1,12 +1,12 @@
-import { research } from "@/data/research";
 import { AnimatedText } from "@/components/AnimatedText";
+import { Research as ResearchType } from "@/types";
 
-export default function Research() {
+export default function Research({ research }: { research: ResearchType }) {
   return (
     <div className="h-full flex flex-col pt-12">
       <AnimatedText 
         text="RESEARCH"
-        className="text-4xl md:text-6xl font-black text-p3-white mb-12 border-b-4 border-p3-cyan pb-2 inline-block"
+        className="text-fluid-h1 font-black text-p3-white mb-12 border-b-4 border-p3-cyan pb-2 inline-block"
       />
       
       <div className="bg-p3-blue-dark/50 p-8 border border-p3-cyan/30 clip-slanted relative overflow-hidden group">

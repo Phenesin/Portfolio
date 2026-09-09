@@ -96,3 +96,23 @@ body {
     color: var(--color-p3-white);
   }
 }
+
+/* Fluid Typography */
+@utility text-fluid-hero {
+  font-size: clamp(2.5rem, 6vw + 1rem, 6rem);
+  line-height: 1.1;
+}
+
+@utility text-fluid-h1 {
+  font-size: clamp(2rem, 5vw + 1rem, 4rem);
+  line-height: 1.2;
+}
+
+@utility text-fluid-contact {
+  font-size: clamp(3rem, 10vw + 1rem, 9rem);
+  line-height: 1;
+}@utility p3-dotted-bg {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.25) 1.5px, transparent 1.5px);
+  background-size: 6px 6px;
+  background-position: center;
+}
