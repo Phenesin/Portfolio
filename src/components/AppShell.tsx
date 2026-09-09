@@ -7,11 +7,13 @@ import { SoundToggle } from "./AudioManager";
 import { ThemeToggle } from "./ThemeToggle";
 import { Background } from "./Background";
 import { CustomCursor } from "./CustomCursor";
+import { ParallaxShapes } from "./ParallaxShapes";
 
 export function AppShell({ children }: { children: ReactNode }) {
   return (
     <>
       <Background />
+      <ParallaxShapes />
       <CustomCursor />
       
       <div className="min-h-screen flex flex-col md:flex-row relative z-10 p-6 md:p-12 gap-8 md:gap-12">
