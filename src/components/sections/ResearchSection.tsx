@@ -28,14 +28,17 @@ export default function Research({ research }: { research: ResearchType }) {
             {research.description}
           </p>
           
-          <div className="grid grid-cols-3 gap-2 max-w-xl mb-8">
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 max-w-3xl mb-8 w-full">
             {research.flow.map((step, i) => (
-              <div key={i} className="flex flex-col items-center justify-center">
-                <div className="bg-p3-blue border border-p3-cyan/50 text-p3-cyan text-center p-3 text-xs md:text-sm font-bold tracking-widest uppercase w-full">
+              <div key={i} className="flex flex-col md:flex-row items-center flex-1 w-full gap-2 md:gap-4">
+                <div className="bg-p3-blue border border-p3-cyan/50 text-p3-cyan text-center p-3 text-xs md:text-sm font-bold tracking-widest uppercase w-full clip-slanted shadow-[0_0_10px_rgba(0,184,250,0.1)]">
                   {step}
                 </div>
                 {i < research.flow.length - 1 && (
-                  <div className="text-p3-yellow mt-2">↓</div>
+                  <div className="text-p3-yellow text-xl flex-shrink-0 font-black drop-shadow-[0_0_5px_var(--theme-yellow)]">
+                    <span className="md:hidden">↓</span>
+                    <span className="hidden md:inline">→</span>
+                  </div>
                 )}
               </div>
             ))}

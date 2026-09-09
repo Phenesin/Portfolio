@@ -13,15 +13,15 @@
 }
 
 :root {
-  /* Default P3R Light/Water Theme */
-  --theme-blue-dark: #00b8fa;
-  --theme-blue: #0096cc;
-  --theme-cyan: #ffffff;
-  --theme-yellow: #ffea00;
+  /* Default P3R Light/Water Theme - High Contrast */
+  --theme-blue-dark: #002b5e; /* Deep Navy for high contrast panels */
+  --theme-blue: #0073a8;      /* Mid-tone ocean blue */
+  --theme-cyan: #00e5ff;      /* Bright neon cyan accent */
+  --theme-yellow: #ffea00;    /* P3R Yellow */
   --theme-black: #000000;
   --theme-white: #ffffff;
-  
-  --background: var(--theme-blue-dark);
+
+  --background: #00a2e8; /* Vibrant P3R Water background */
   --foreground: var(--theme-black);
 }
 

@@ -24,7 +24,7 @@ export default function About({ profile }: { profile: Profile }) {
           <h4 className="text-sm font-mono text-p3-yellow tracking-widest uppercase mb-4">
             CURRENTLY INTERESTED IN
           </h4>
-          <ul className="grid grid-cols-2 gap-3">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {profile.about.interests.map((interest, index) => (
               <li key={index} className="flex items-center text-p3-white">
                 <span className="w-2 h-2 bg-p3-cyan inline-block mr-3 rotate-45" />

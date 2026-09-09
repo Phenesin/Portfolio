@@ -1,6 +1,6 @@
 import { projects } from "@/data/projects";
 import { AnimatedText } from "@/components/AnimatedText";
-import Link from "next/link";
+import { BackButton } from "@/components/BackButton";
 import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
@@ -20,9 +20,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
   return (
     <div className="h-full flex flex-col pt-12">
       <div className="flex items-center gap-4 mb-4">
-        <Link href="/projects" className="text-p3-yellow hover:text-p3-cyan font-mono text-sm tracking-widest uppercase">
-          &lt; BACK TO PROJECTS
-        </Link>
+        <BackButton />
       </div>
 
       <div className="flex items-baseline gap-4 border-b-4 border-p3-cyan pb-2 mb-8">
