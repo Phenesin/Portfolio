@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useRef, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
 export const SingleNoteIcon = ({ size = 24, className = "" }: { size?: number, className?: string }) => (
@@ -38,58 +38,54 @@ const AudioContext = createContext<AudioContextType>({
 
 export const useAudio = () => useContext(AudioContext);
 
+let hoverAudio: HTMLAudioElement | null = null;
+let clickAudio: HTMLAudioElement | null = null;
+let bgmAudio: HTMLAudioElement | null = null;
+const PLACEHOLDER_MUSIC_PATH = ""; // e.g. "/sounds/p3_bgm.mp3"
+
+if (typeof window !== "undefined") {
+  hoverAudio = new Audio("/sounds/p3_hover.wav");
+  hoverAudio.volume = 0.3;
+
+  clickAudio = new Audio("/sounds/p3_click.wav");
+  clickAudio.playbackRate = 1.0;
+  clickAudio.volume = 0.5;
+
+  if (PLACEHOLDER_MUSIC_PATH) {
+    bgmAudio = new Audio(PLACEHOLDER_MUSIC_PATH);
+    bgmAudio.loop = true;
+    bgmAudio.volume = 0.4;
+  }
+}
+
 export function AudioProvider({ children }: { children: ReactNode }) {
   const [sfxMuted, setSfxMuted] = useState(false);
-  const [bgmMuted, setBgmMuted] = useState(true); // Start muted or true by default for BGM
-  
-  const hoverSound = useRef<HTMLAudioElement | null>(null);
-  const clickSound = useRef<HTMLAudioElement | null>(null);
-  const bgmSound = useRef<HTMLAudioElement | null>(null);
-
-  const PLACEHOLDER_MUSIC_PATH = ""; // e.g. "/sounds/p3_bgm.mp3"
+  const [bgmMuted, setBgmMuted] = useState(true);
 
   useEffect(() => {
-    // SFX
-    hoverSound.current = new Audio("/sounds/p3_hover.wav");
-    if (hoverSound.current) {
-      hoverSound.current.volume = 0.3;
-    }
-
-    clickSound.current = new Audio("/sounds/p3_click.wav");
-    if (clickSound.current) {
-      clickSound.current.playbackRate = 1.0;
-      clickSound.current.volume = 0.5;
-    }
-
-    // BGM Placeholder
-    if (PLACEHOLDER_MUSIC_PATH) {
-      bgmSound.current = new Audio(PLACEHOLDER_MUSIC_PATH);
-      bgmSound.current.loop = true;
-      bgmSound.current.volume = 0.4;
-    }
-  }, []);
-
-  useEffect(() => {
-    if (bgmSound.current) {
+    if (bgmAudio) {
       if (bgmMuted) {
-        bgmSound.current.pause();
+        bgmAudio.pause();
       } else {
-        bgmSound.current.play().catch(() => {});
+        bgmAudio.play().catch(() => {});
       }
     }
   }, [bgmMuted]);
 
   const playHover = () => {
-    if (!sfxMuted && hoverSound.current) {
-      hoverSound.current.currentTime = 0;
-      hoverSound.current.play().catch(() => {});
+    if (!sfxMuted && hoverAudio) {
+      const clone = hoverAudio.cloneNode() as HTMLAudioElement;
+      clone.volume = hoverAudio.volume;
+      clone.play().catch(() => {});
     }
   };
 
   const playClick = () => {
-    if (!sfxMuted && clickSound.current) {
-      clickSound.current.currentTime = 0;
-      clickSound.current.play().catch(() => {});
+    if (!sfxMuted && clickAudio) {
+      const clone = clickAudio.cloneNode() as HTMLAudioElement;
+      clone.volume = clickAudio.volume;
+      clone.playbackRate = clickAudio.playbackRate;
+      clone.play().catch(() => {});
     }
   };
 

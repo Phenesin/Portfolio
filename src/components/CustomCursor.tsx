@@ -1,17 +1,26 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+  
+  const springConfig = { stiffness: 500, damping: 28, mass: 0.5 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
     // Only show custom cursor on desktop
     if (window.matchMedia("(hover: hover)").matches) {
       const updateMousePosition = (e: MouseEvent) => {
-        setMousePosition({ x: e.clientX, y: e.clientY });
+        if (!isVisible) setIsVisible(true);
+        cursorX.set(e.clientX);
+        cursorY.set(e.clientY);
       };
 
       const handleMouseOver = (e: MouseEvent) => {
@@ -37,9 +46,9 @@ export function CustomCursor() {
         window.removeEventListener("mousedown", handleClick);
       };
     }
-  }, []);
+  }, [cursorX, cursorY, isVisible]);
 
-  if (!mousePosition.x && !mousePosition.y) return null;
+  if (!isVisible) return null;
 
   return (
     <>
@@ -65,13 +74,16 @@ export function CustomCursor() {
       {/* Main Cursor Reticle */}
       <motion.div
         className="fixed top-0 left-0 w-10 h-10 pointer-events-none z-[100] text-p3-cyan mix-blend-difference"
+        style={{
+          x: cursorXSpring,
+          y: cursorYSpring,
+          translateX: "-50%",
+          translateY: "-50%"
+        }}
         animate={{
-          x: mousePosition.x - 20,
-          y: mousePosition.y - 20,
           scale: isHovering ? 1.3 : 1,
           rotate: isHovering ? 45 : 0,
         }}
-        transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
       >
         <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2" className="w-full h-full">
           {/* Abstract angular brackets */}
@@ -87,12 +99,13 @@ export function CustomCursor() {
       {/* Direct Mouse Point */}
       <motion.div
         className="fixed top-0 left-0 w-2 h-2 bg-p3-yellow pointer-events-none z-[100]"
-        style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
-        animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
+        style={{ 
+          clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+          x: cursorX,
+          y: cursorY,
+          translateX: "-50%",
+          translateY: "-50%"
         }}
-        transition={{ type: "tween", ease: "linear", duration: 0 }}
       />
     </>
   );

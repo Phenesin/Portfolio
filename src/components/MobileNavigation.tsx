@@ -14,7 +14,7 @@ export function MobileNavigation({ navItems }: { navItems: NavItem[] }) {
   const pathname = usePathname();
   const router = useRouter();
   
-  const { playHover, playClick, sfxMuted, toggleSfx, bgmMuted, toggleBgm } = useAudio();
+  const { playClick, sfxMuted, toggleSfx, bgmMuted, toggleBgm } = useAudio();
   const { isDarkHour, toggleDarkHour } = useTheme();
 
   const handleNavClick = (path: string, id: string) => {
