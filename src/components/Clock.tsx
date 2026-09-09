@@ -24,7 +24,7 @@ export function Clock() {
   const timeStr = `${time.getHours().toString().padStart(2, "0")}:${time.getMinutes().toString().padStart(2, "0")}`;
 
   return (
-    <div className="fixed top-6 right-6 z-40 text-right flex flex-col font-mono text-sm tracking-widest text-p3-cyan">
+    <div className="hidden md:flex fixed top-6 right-6 z-40 text-right flex-col font-mono text-sm tracking-widest text-p3-cyan">
       <span className="font-bold">{dayName}</span>
       <span>{dateStr}</span>
       <span className="text-xl font-bold mt-1 text-p3-white">{timeStr}</span>

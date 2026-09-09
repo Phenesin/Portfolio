@@ -9,7 +9,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleDarkHour}
-      className={`fixed bottom-20 right-6 z-50 p-3 rounded-full overflow-hidden transition-colors duration-500 flex items-center gap-3 font-mono font-bold tracking-widest text-xs uppercase ${
+      className={`hidden md:flex fixed bottom-36 left-6 md:bottom-20 md:left-auto md:right-6 z-50 p-3 rounded-full overflow-hidden transition-colors duration-500 items-center gap-3 font-mono font-bold tracking-widest text-xs uppercase ${
         isDarkHour 
           ? "bg-p3-black border border-p3-yellow text-p3-yellow shadow-[0_0_15px_#ff003c]" 
           : "bg-p3-black text-p3-cyan border border-p3-cyan shadow-[0_0_10px_#00b8fa]"

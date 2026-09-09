@@ -22,6 +22,7 @@ export const profile = {
   contact: {
     email: "siddharthamanu5@gmail.com",
     github: "Phenesin",
-    linkedin: "siddhartha-manu"
+    linkedin: "siddhartha-manu",
+    twitter: "dotachin_07"
   }
 };

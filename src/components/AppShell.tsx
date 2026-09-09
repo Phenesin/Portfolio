@@ -8,6 +8,8 @@ import { ThemeToggle } from "./ThemeToggle";
 import { Background } from "./Background";
 import { CustomCursor } from "./CustomCursor";
 import { ParallaxShapes } from "./ParallaxShapes";
+
+import { MobileNavigation } from "./MobileNavigation";
 import { NavItem, Profile } from "@/types";
 
 export function AppShell({ 
@@ -25,7 +27,7 @@ export function AppShell({
       <ParallaxShapes />
       <CustomCursor />
       
-      <div className="min-h-screen flex flex-col md:flex-row relative z-10 p-6 md:p-12 gap-8 md:gap-12">
+      <div className="min-h-[100dvh] flex flex-col md:flex-row relative z-10 p-6 md:p-12 gap-8 md:gap-12">
         {/* Left Sidebar */}
         <aside className="w-full md:w-80 flex-shrink-0 flex flex-col md:sticky md:top-12 self-start z-20">
           <header className="mb-12">
@@ -41,6 +43,7 @@ export function AppShell({
           </header>
           
           <Navigation navItems={navItems} />
+
         </aside>
 
         {/* Main Content Area */}
@@ -54,6 +57,7 @@ export function AppShell({
       <Clock />
       <SoundToggle />
       <ThemeToggle />
+      <MobileNavigation navItems={navItems} />
 
       
       {/* System Status Indicator */}

@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 
 import { AppShell } from "@/components/AppShell";
 import { ThemeProvider } from "@/components/ThemeContext";
+import { AudioProvider } from "@/components/AudioManager";
 
 export const metadata: Metadata = {
   title: "Siddhartha Manu | Software Developer",
@@ -38,9 +39,11 @@ export default function RootLayout({
       <body className="flex flex-col bg-p3-blue-dark">
         <LoadingScreen />
         <ThemeProvider>
-          <AppShell profile={profile} navItems={navItems}>
-            {children}
-          </AppShell>
+          <AudioProvider>
+            <AppShell profile={profile} navItems={navItems}>
+              {children}
+            </AppShell>
+          </AudioProvider>
         </ThemeProvider>
       </body>
     </html>

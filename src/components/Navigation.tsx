@@ -49,7 +49,7 @@ export function Navigation({ navItems }: { navItems: NavItem[] }) {
   };
 
   return (
-    <nav className="flex flex-col gap-3 mt-8 z-20 relative w-64 transform origin-top-left -skew-x-12 -rotate-3 ml-8 md:ml-12">
+    <nav className="hidden md:flex flex-col gap-3 mt-8 z-20 relative w-64 transform origin-top-left -skew-x-12 -rotate-3 ml-8 md:ml-12">
       {navItems.map((item, index) => {
         // If we are on a project page, highlight the projects tab
         const isActive = pathname.startsWith("/projects") && item.id === "projects" 

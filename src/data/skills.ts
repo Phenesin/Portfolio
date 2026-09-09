@@ -5,7 +5,7 @@ export const skills = [
   },
   {
     category: "WORKING WITH",
-    items: ["FastAPI", "SQL", "OpenGL", "Scikit-Learn"]
+    items: ["FastAPI", "SQL", "OpenGL", "Scikit-Learn", "Django"]
   },
   {
     category: "TOOLS",

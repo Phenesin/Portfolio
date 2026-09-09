@@ -1,7 +1,18 @@
 import { AnimatedText } from "@/components/AnimatedText";
 import { WhatIBuildItem } from "@/types";
+import { BrainCircuit, Server, Beaker } from "lucide-react";
 
 export default function WhatIBuild({ whatIBuild }: { whatIBuild: WhatIBuildItem[] }) {
+  
+  const getIcon = (id: string) => {
+    switch (id) {
+      case "01": return <BrainCircuit className="text-p3-cyan mb-4" size={40} />;
+      case "02": return <Server className="text-p3-cyan mb-4" size={40} />;
+      case "03": return <Beaker className="text-p3-cyan mb-4" size={40} />;
+      default: return null;
+    }
+  };
+
   return (
     <div className="h-full flex flex-col pt-12 pb-24">
       <AnimatedText 
@@ -22,11 +33,12 @@ export default function WhatIBuild({ whatIBuild }: { whatIBuild: WhatIBuildItem[
             {/* Background pattern */}
             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_2px_2px,rgba(0,229,255,1)_1px,transparent_0)] bg-[size:20px_20px] pointer-events-none group-hover:opacity-20 transition-opacity" />
             
-            <div className="text-5xl font-black font-mono text-p3-cyan/20 group-hover:text-p3-yellow/30 transition-colors duration-300">
+            <div className="text-5xl font-black font-mono text-p3-cyan/20 group-hover:text-p3-yellow/30 transition-colors duration-300 flex-shrink-0">
               {item.id}
             </div>
             
             <div className="relative z-10">
+              {getIcon(item.id)}
               <h3 className="text-2xl font-black text-p3-white uppercase tracking-wider mb-4">
                 {item.title}
               </h3>

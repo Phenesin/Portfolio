@@ -8,6 +8,7 @@ export interface ProfileContact {
   email: string;
   github: string;
   linkedin: string;
+  twitter: string;
 }
 
 export interface Profile {
