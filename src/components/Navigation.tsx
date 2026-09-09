@@ -59,7 +59,7 @@ export function Navigation() {
   };
 
   return (
-    <nav className="flex flex-col gap-2 mt-8 z-20 relative w-64">
+    <nav className="flex flex-col gap-3 mt-8 z-20 relative w-64 transform origin-top-left -skew-x-12 -rotate-3 ml-8 md:ml-12">
       {navItems.map((item, index) => {
         // If we are on a project page, highlight the projects tab
         const isActive = pathname.startsWith("/projects") && item.id === "projects" 
@@ -72,18 +72,23 @@ export function Navigation() {
               onHoverStart={playHover}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
+              whileHover={{ 
+                scale: 1.05, 
+                x: 15,
+                transition: { type: "spring", stiffness: 400, damping: 17 }
+              }}
               transition={{ delay: index * 0.1 }}
               className={clsx(
-                "group relative flex items-center p-3 text-lg font-bold tracking-wider transition-colors duration-200 clip-slanted cursor-pointer",
+                "group relative flex items-center p-4 text-xl font-black tracking-widest transition-colors duration-200 clip-slanted cursor-pointer uppercase",
                 isActive 
                   ? "bg-p3-cyan text-p3-black" 
-                  : "bg-p3-blue/40 text-p3-white hover:bg-p3-yellow hover:text-p3-black backdrop-blur-sm border-l-4 border-transparent hover:border-p3-black"
+                  : "bg-p3-blue/60 text-p3-white hover:bg-p3-black hover:text-p3-yellow backdrop-blur-md border-l-8 border-transparent hover:border-p3-yellow shadow-lg"
               )}
             >
               {isActive && (
                 <motion.div 
                   layoutId="active-indicator"
-                  className="absolute left-0 top-0 bottom-0 w-1 bg-p3-black" 
+                  className="absolute left-0 top-0 bottom-0 w-2 bg-p3-black" 
                 />
               )}
               <span className="relative z-10">{isActive ? `> ${item.label}` : item.label}</span>

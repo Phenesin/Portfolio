@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 import { AppShell } from "@/components/AppShell";
+import { ThemeProvider } from "@/components/ThemeContext";
 
 export const metadata: Metadata = {
   title: "Siddhartha Manu | Software Developer",
@@ -30,9 +31,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
     >
       <body className="flex flex-col bg-p3-blue-dark">
-        <AppShell>
-          {children}
-        </AppShell>
+        <ThemeProvider>
+          <AppShell>
+            {children}
+          </AppShell>
+        </ThemeProvider>
       </body>
     </html>
   );

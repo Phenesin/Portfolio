@@ -1,22 +1,41 @@
 @import "tailwindcss";
 
 @theme {
-  --color-p3-blue-dark: #00b8fa; /* Bright cyan background from reference */
-  --color-p3-blue: #0096cc;
-  --color-p3-cyan: #ffffff; /* Use white as the accent on bright blue */
-  --color-p3-yellow: #ffea00;
-  --color-p3-black: #000000;
-  --color-p3-white: #ffffff;
+  --color-p3-blue-dark: var(--theme-blue-dark);
+  --color-p3-blue: var(--theme-blue);
+  --color-p3-cyan: var(--theme-cyan);
+  --color-p3-yellow: var(--theme-yellow);
+  --color-p3-black: var(--theme-black);
+  --color-p3-white: var(--theme-white);
   
   --font-sans: var(--font-geist-sans), sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
 }
 
 :root {
-  --background: var(--color-p3-blue-dark);
-  --foreground: var(--color-p3-black);
-  --accent: var(--color-p3-black);
-  --hover: var(--color-p3-yellow);
+  /* Default P3R Light/Water Theme */
+  --theme-blue-dark: #00b8fa;
+  --theme-blue: #0096cc;
+  --theme-cyan: #ffffff;
+  --theme-yellow: #ffea00;
+  --theme-black: #000000;
+  --theme-white: #ffffff;
+  
+  --background: var(--theme-blue-dark);
+  --foreground: var(--theme-black);
+}
+
+.dark-hour {
+  /* Tartarus / Dark Hour Theme */
+  --theme-blue-dark: #0a110a; /* Dark sickly green/black */
+  --theme-blue: #132415;      /* Deep toxic green */
+  --theme-cyan: #14f466;      /* Bright neon green (replaces white cyan) */
+  --theme-yellow: #ff003c;    /* Glowing crimson (replaces yellow) */
+  --theme-black: #000000;
+  --theme-white: #e3f5e1;     /* Pale sickly white */
+  
+  --background: var(--theme-blue-dark);
+  --foreground: var(--theme-black);
 }
 
 body {
@@ -25,6 +44,7 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.5s ease-in-out;
 }
 
 /* Custom Selection */
@@ -40,4 +60,39 @@ body {
 
 @utility clip-slanted {
   clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+}
+
+@keyframes p3-glitch {
+  0% {
+    text-shadow: 3px 0 0 var(--color-p3-yellow), -3px 0 0 #ff0055;
+    transform: translate(2px, 0) skew(0deg);
+  }
+  20% {
+    text-shadow: -3px 3px 0 var(--color-p3-yellow), 3px -3px 0 #ff0055;
+    transform: translate(-2px, 2px) skew(-5deg);
+  }
+  40% {
+    text-shadow: 3px -3px 0 var(--color-p3-yellow), -3px 3px 0 #ff0055;
+    transform: translate(2px, -2px) skew(5deg);
+  }
+  60% {
+    text-shadow: -3px -3px 0 var(--color-p3-yellow), 3px 3px 0 #ff0055;
+    transform: translate(-2px, 0) skew(0deg);
+  }
+  80% {
+    text-shadow: 3px 3px 0 var(--color-p3-yellow), -3px -3px 0 #ff0055;
+    transform: translate(2px, 2px) skew(2deg);
+  }
+  100% {
+    text-shadow: 0 0 0 transparent;
+    transform: translate(0, 0);
+  }
+}
+
+@utility p3-glitch-hover {
+  transition: all 0.1s;
+  &:hover {
+    animation: p3-glitch 0.2s cubic-bezier(.25, .46, .45, .94) both infinite;
+    color: var(--color-p3-white);
+  }
 }

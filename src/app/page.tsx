@@ -7,6 +7,7 @@ import ResearchSection from "@/components/sections/ResearchSection";
 import WhatIBuildSection from "@/components/sections/WhatIBuildSection";
 import BeyondCodeSection from "@/components/sections/BeyondCodeSection";
 import ContactSection from "@/components/sections/ContactSection";
+import { SectionReveal } from "@/components/SectionReveal";
 
 export default function Home() {
   return (
@@ -16,17 +17,17 @@ export default function Home() {
         <div className="relative z-10">
           <AnimatedText 
             text="BUILD."
-            className="text-6xl md:text-8xl font-black text-p3-white opacity-20 block"
+            className="text-6xl md:text-8xl font-black text-p3-white opacity-20 block p3-glitch-hover cursor-crosshair transition-opacity hover:opacity-100"
             delay={0.1}
           />
           <AnimatedText 
             text="UNDERSTAND."
-            className="text-6xl md:text-8xl font-black text-p3-white opacity-40 block ml-8"
+            className="text-6xl md:text-8xl font-black text-p3-white opacity-40 block ml-8 p3-glitch-hover cursor-crosshair transition-opacity hover:opacity-100"
             delay={0.3}
           />
           <AnimatedText 
             text="EXPERIMENT."
-            className="text-6xl md:text-8xl font-black text-p3-cyan block ml-4"
+            className="text-6xl md:text-8xl font-black text-p3-cyan block ml-4 p3-glitch-hover cursor-crosshair transition-opacity hover:opacity-100"
             delay={0.5}
           />
         </div>
@@ -42,13 +43,13 @@ export default function Home() {
         <div className="absolute right-12 top-1/2 -translate-y-1/2 w-32 h-32 border-2 border-p3-yellow/40 rotate-[25deg] pointer-events-none" />
       </section>
 
-      <section id="about" className="min-h-screen pt-20"><AboutSection /></section>
-      <section id="projects" className="min-h-screen pt-20"><ProjectsSection /></section>
-      <section id="tech-stack" className="min-h-screen pt-20"><TechStackSection /></section>
-      <section id="research" className="min-h-screen pt-20"><ResearchSection /></section>
-      <section id="what-i-build" className="min-h-screen pt-20"><WhatIBuildSection /></section>
-      <section id="beyond-code" className="min-h-screen pt-20"><BeyondCodeSection /></section>
-      <section id="contact" className="min-h-screen pt-20"><ContactSection /></section>
+      <SectionReveal id="about" className="min-h-screen pt-20"><AboutSection /></SectionReveal>
+      <SectionReveal id="projects" className="min-h-screen pt-20"><ProjectsSection /></SectionReveal>
+      <SectionReveal id="tech-stack" className="min-h-screen pt-20"><TechStackSection /></SectionReveal>
+      <SectionReveal id="research" className="min-h-screen pt-20"><ResearchSection /></SectionReveal>
+      <SectionReveal id="what-i-build" className="min-h-screen pt-20"><WhatIBuildSection /></SectionReveal>
+      <SectionReveal id="beyond-code" className="min-h-screen pt-20"><BeyondCodeSection /></SectionReveal>
+      <SectionReveal id="contact" className="min-h-screen pt-20"><ContactSection /></SectionReveal>
     </div>
   );
 }

@@ -3,8 +3,10 @@
 import { profile } from "@/data/profile";
 import { AnimatedText } from "@/components/AnimatedText";
 import { motion } from "framer-motion";
+import { useAudio } from "@/components/AudioManager";
 
 export default function Contact() {
+  const { playHover, playClick } = useAudio();
   return (
     <div className="h-full flex flex-col pt-12 pb-24 justify-center items-center text-center">
       <AnimatedText 
@@ -37,6 +39,8 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 + index * 0.1 }}
+            onHoverStart={playHover}
+            onClick={playClick}
             className="w-full md:w-auto px-8 py-4 bg-p3-blue border-2 border-p3-cyan text-p3-white font-black text-xl tracking-widest uppercase hover:bg-p3-yellow hover:text-p3-black hover:border-p3-black transition-all duration-300 clip-diagonal text-center"
           >
             {link.label}

@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { Navigation } from "./Navigation";
 import { Clock } from "./Clock";
 import { SoundToggle } from "./AudioManager";
+import { ThemeToggle } from "./ThemeToggle";
 import { Background } from "./Background";
 import { CustomCursor } from "./CustomCursor";
 
@@ -41,6 +42,8 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <Clock />
       <SoundToggle />
+      <ThemeToggle />
+
       
       {/* System Status Indicator */}
       <div className="fixed bottom-6 left-6 z-40 text-xs font-mono text-p3-cyan/70 tracking-widest uppercase">
