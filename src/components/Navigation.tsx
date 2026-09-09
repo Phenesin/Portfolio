@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAudio } from "./AudioManager";
@@ -7,26 +8,66 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 
 const navItems = [
-  { path: "/about", label: "ABOUT" },
-  { path: "/projects", label: "PROJECTS" },
-  { path: "/tech-stack", label: "TECH STACK" },
-  { path: "/research", label: "RESEARCH" },
-  { path: "/what-i-build", label: "WHAT I BUILD" },
-  { path: "/beyond-code", label: "BEYOND CODE" },
-  { path: "/contact", label: "CONTACT" },
+  { id: "home", label: "HOME" },
+  { id: "about", label: "ABOUT ME" },
+  { id: "projects", label: "PROJECTS" },
+  { id: "tech-stack", label: "TECH STACK" },
+  { id: "research", label: "RESEARCH" },
+  { id: "what-i-build", label: "WHAT I BUILD" },
+  { id: "beyond-code", label: "BEYOND CODE" },
+  { id: "contact", label: "CONTACT" },
 ];
 
 export function Navigation() {
+  const [activeId, setActiveId] = useState("home");
   const pathname = usePathname();
   const { playHover, playClick } = useAudio();
+
+  useEffect(() => {
+    if (pathname !== "/") return; // Only observe on home page
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { 
+        rootMargin: "-40% 0px -40% 0px" 
+      }
+    );
+
+    navItems.forEach((item) => {
+      const el = document.getElementById(item.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    playClick();
+    if (pathname === "/") {
+      e.preventDefault();
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <nav className="flex flex-col gap-2 mt-8 z-20 relative w-64">
       {navItems.map((item, index) => {
-        const isActive = pathname.startsWith(item.path);
+        // If we are on a project page, highlight the projects tab
+        const isActive = pathname.startsWith("/projects") && item.id === "projects" 
+          ? true 
+          : pathname === "/" && activeId === item.id;
         
         return (
-          <Link href={item.path} key={item.path} onClick={playClick}>
+          <Link href={`/#${item.id}`} key={item.id} onClick={(e) => handleClick(e, item.id)}>
             <motion.div 
               onHoverStart={playHover}
               initial={{ opacity: 0, x: -20 }}

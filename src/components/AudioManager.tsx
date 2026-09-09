@@ -8,13 +8,14 @@ export const useAudio = () => {
   const clickSound = useRef<HTMLAudioElement | null>(null);
   
   useEffect(() => {
-    hoverSound.current = new Audio("/sounds/click.mp3");
+    hoverSound.current = new Audio("/sounds/p3_hover.wav");
+    
+    // Only set volume and ignore errors for hover
     if (hoverSound.current) {
-      hoverSound.current.playbackRate = 1.5;
       hoverSound.current.volume = 0.3;
     }
-    
-    clickSound.current = new Audio("/sounds/click.mp3");
+
+    clickSound.current = new Audio("/sounds/p3_click.wav");
     if (clickSound.current) {
       clickSound.current.playbackRate = 1.0;
       clickSound.current.volume = 0.5;

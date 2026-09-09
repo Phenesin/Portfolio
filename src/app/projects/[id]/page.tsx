@@ -53,6 +53,19 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
               ))}
             </ul>
           </div>
+          
+          {project.github && (
+            <div className="pt-4">
+              <a 
+                href={project.github} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block bg-p3-yellow text-p3-black font-black uppercase px-8 py-4 tracking-widest hover:bg-p3-cyan transition-colors duration-300 clip-slanted"
+              >
+                View Source Code
+              </a>
+            </div>
+          )}
         </div>
 
         <div className="space-y-8">
