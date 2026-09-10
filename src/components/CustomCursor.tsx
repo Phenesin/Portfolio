@@ -56,7 +56,7 @@ export function CustomCursor() {
       {ripples.map((ripple) => (
         <motion.div
           key={ripple.id}
-          className="fixed w-12 h-12 border-[3px] border-p3-yellow pointer-events-none z-[90]"
+          className="fixed w-12 h-12 border-[3px] border-p3-yellow pointer-events-none z-[var(--z-cursor)]"
           style={{ 
             top: ripple.y - 24, 
             left: ripple.x - 24,
@@ -73,7 +73,7 @@ export function CustomCursor() {
 
       {/* Main Cursor Reticle */}
       <motion.div
-        className="fixed top-0 left-0 w-10 h-10 pointer-events-none z-[100] text-p3-cyan mix-blend-difference"
+        className="fixed top-0 left-0 w-10 h-10 pointer-events-none z-[var(--z-cursor)] text-p3-cyan mix-blend-difference"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
@@ -98,7 +98,7 @@ export function CustomCursor() {
 
       {/* Direct Mouse Point */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-p3-yellow pointer-events-none z-[100]"
+        className="fixed top-0 left-0 w-2 h-2 bg-p3-yellow pointer-events-none z-[var(--z-cursor)]"
         style={{ 
           clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
           x: cursorX,

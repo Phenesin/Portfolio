@@ -67,7 +67,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       if (bgmMuted) {
         bgmAudio.pause();
       } else {
-        bgmAudio.play().catch(() => {});
+        bgmAudio.play().catch((err) => {
+          if (process.env.NODE_ENV !== "production") console.warn("BGM play failed:", err);
+        });
       }
     }
   }, [bgmMuted]);
@@ -76,7 +78,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     if (!sfxMuted && hoverAudio) {
       const clone = hoverAudio.cloneNode() as HTMLAudioElement;
       clone.volume = hoverAudio.volume;
-      clone.play().catch(() => {});
+      clone.play().catch((err) => {
+        if (process.env.NODE_ENV !== "production") console.warn("Hover SFX play failed:", err);
+      });
     }
   };
 
@@ -85,7 +89,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       const clone = clickAudio.cloneNode() as HTMLAudioElement;
       clone.volume = clickAudio.volume;
       clone.playbackRate = clickAudio.playbackRate;
-      clone.play().catch(() => {});
+      clone.play().catch((err) => {
+        if (process.env.NODE_ENV !== "production") console.warn("Click SFX play failed:", err);
+      });
     }
   };
 

@@ -62,7 +62,7 @@ export default function Contact({ profile }: { profile: Profile }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            onHoverStart={() => { playHover(); setResumeOpen(true); }}
+            onHoverStart={playHover}
             onClick={() => { playClick(); setResumeOpen(!resumeOpen); }}
             className="flex items-center gap-3 px-8 py-4 h-16 bg-p3-blue border-2 border-p3-cyan text-p3-white font-black text-xl tracking-widest uppercase hover:bg-p3-yellow hover:text-p3-black hover:border-p3-black transition-all duration-300 clip-diagonal"
           >
@@ -108,7 +108,7 @@ export default function Contact({ profile }: { profile: Profile }) {
         {[
           { label: "GITHUB", url: `https://github.com/${profile.contact.github}`, icon: <GithubIcon size={28} /> },
           { label: "LINKEDIN", url: `https://linkedin.com/in/${profile.contact.linkedin}`, icon: <LinkedinIcon size={28} /> },
-          ...(profile.contact.twitter ? [{ label: "X", url: `https://x.com/Siddhartha49140`, icon: <TwitterIcon size={26} /> }] : [])
+          ...(profile.contact.twitter ? [{ label: "X", url: `https://x.com/${profile.contact.twitter}`, icon: <TwitterIcon size={26} /> }] : [])
         ].map((link, index) => (
           <motion.a
             key={index}

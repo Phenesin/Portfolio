@@ -29,7 +29,7 @@ export function AppShell({
       
       <div className="min-h-[100dvh] flex flex-col md:flex-row relative z-10 p-6 md:p-12 gap-8 md:gap-12">
         {/* Left Sidebar */}
-        <aside className="w-full md:w-80 flex-shrink-0 flex flex-col md:sticky md:top-12 self-start z-20">
+        <aside className="w-full md:w-80 flex-shrink-0 flex flex-col md:sticky md:top-12 self-start z-[var(--z-nav)]">
           <header className="mb-12">
             <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-p3-white mb-2 leading-none uppercase">
               {profile.name.split(' ')[0]}<br />{profile.name.split(' ')[1] || ''}
@@ -61,7 +61,7 @@ export function AppShell({
 
       
       {/* System Status Indicator */}
-      <div className="fixed bottom-6 left-6 z-40 text-xs font-mono text-p3-cyan/70 tracking-widest uppercase">
+      <div className="fixed bottom-6 left-6 z-[var(--z-overlay)] text-xs font-mono text-p3-cyan/70 tracking-widest uppercase">
         <div>2026</div>
         <div>System Online</div>
       </div>

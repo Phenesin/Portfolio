@@ -23,6 +23,11 @@
 
   --background: #00a2e8; /* Vibrant P3R Water background */
   --foreground: var(--theme-black);
+
+  /* Semantic Z-Indexes */
+  --z-nav: 20;
+  --z-overlay: 40;
+  --z-cursor: 100;
 }
 
 .dark-hour {
@@ -36,6 +41,10 @@
   
   --background: var(--theme-blue-dark);
   --foreground: var(--theme-black);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {

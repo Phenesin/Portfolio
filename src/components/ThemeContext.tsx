@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
+import { ThemeProvider as NextThemesProvider, useTheme as useNextTheme } from "next-themes";
 import { useAudio } from "./AudioManager";
 
 type ThemeContextType = {
@@ -10,30 +11,41 @@ type ThemeContextType = {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [isDarkHour, setIsDarkHour] = useState(false);
-  const { playClick } = useAudio(); // Or a custom ominous sound if available
+function ThemeLogicProvider({ children }: { children: React.ReactNode }) {
+  const { theme, setTheme } = useNextTheme();
+  const { playClick } = useAudio();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Apply class to html tag for global CSS variable switching
-    const html = document.documentElement;
-    if (isDarkHour) {
-      html.classList.add("dark-hour");
-    } else {
-      html.classList.remove("dark-hour");
-    }
-  }, [isDarkHour]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
+  const isDarkHour = theme === "dark-hour";
 
   const toggleDarkHour = () => {
-    // In a real app we'd play an ominous chime here
     playClick();
-    setIsDarkHour((prev) => !prev);
+    setTheme(isDarkHour ? "light" : "dark-hour");
   };
+
+  if (!mounted) {
+    return <ThemeContext.Provider value={{ isDarkHour: false, toggleDarkHour: () => {} }}>{children}</ThemeContext.Provider>;
+  }
 
   return (
     <ThemeContext.Provider value={{ isDarkHour, toggleDarkHour }}>
       {children}
     </ThemeContext.Provider>
+  );
+}
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <NextThemesProvider attribute="class" defaultTheme="light" enableSystem={false} themes={['light', 'dark-hour']}>
+      <ThemeLogicProvider>
+        {children}
+      </ThemeLogicProvider>
+    </NextThemesProvider>
   );
 }
 

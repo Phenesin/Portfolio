@@ -23,6 +23,6 @@ export const profile = {
     email: "siddharthamanu5@gmail.com",
     github: "Phenesin",
     linkedin: "siddhartha-manu",
-    twitter: "dotachin_07"
+    twitter: "Siddhartha49140"
   }
 };
