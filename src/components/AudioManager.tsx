@@ -45,18 +45,18 @@ let bgmLightAudio: HTMLAudioElement | null = null;
 let bgmDarkAudio: HTMLAudioElement | null = null;
 
 if (typeof window !== "undefined") {
-  hoverAudio = new Audio("/sounds/p3_hover.wav");
+  hoverAudio = new Audio("/my-portfolio/sounds/p3_hover.wav");
   hoverAudio.volume = 0.3;
 
-  clickAudio = new Audio("/sounds/p3_click.wav");
+  clickAudio = new Audio("/my-portfolio/sounds/p3_click.wav");
   clickAudio.playbackRate = 1.0;
   clickAudio.volume = 0.5;
 
-  bgmLightAudio = new Audio("/sounds/light_theme.mp3");
+  bgmLightAudio = new Audio("/my-portfolio/sounds/light_theme.mp3");
   bgmLightAudio.loop = true;
   bgmLightAudio.volume = 0.15;
 
-  bgmDarkAudio = new Audio("/sounds/dark_theme.mp3");
+  bgmDarkAudio = new Audio("/my-portfolio/sounds/dark_theme.mp3");
   bgmDarkAudio.loop = true;
   bgmDarkAudio.volume = 0.15;
 }
