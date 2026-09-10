@@ -37,8 +37,15 @@ export function Navigation({ navItems }: { navItems: NavItem[] }) {
     return () => observer.disconnect();
   }, [pathname, navItems]);
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent, path: string, id: string) => {
     playClick();
+    if (pathname === "/") {
+      e.preventDefault();
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (
@@ -50,7 +57,11 @@ export function Navigation({ navItems }: { navItems: NavItem[] }) {
           : pathname === "/" && activeId === item.id;
         
         return (
-          <Link href={`/#${item.id}`} key={item.id} onClick={handleClick}>
+          <Link 
+            href={`/#${item.id}`} 
+            key={item.id} 
+            onClick={(e) => handleClick(e, `/#${item.id}`, item.id)}
+          >
             <motion.div 
               onHoverStart={playHover}
               initial={{ opacity: 0, x: -20 }}

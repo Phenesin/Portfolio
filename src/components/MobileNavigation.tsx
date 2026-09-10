@@ -51,7 +51,7 @@ export function MobileNavigation({ navItems }: { navItems: NavItem[] }) {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="md:hidden fixed inset-0 z-40 bg-p3-blue-dark/80 backdrop-blur-md flex flex-col justify-end pb-24 px-6"
+            className="md:hidden fixed inset-0 z-40 bg-p3-blue-dark/80 backdrop-blur-md flex flex-col justify-start pt-16 pb-24 px-6 overflow-y-auto"
           >
             <div className="flex flex-col gap-4">
               {/* Theme Toggle */}

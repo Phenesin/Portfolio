@@ -3,8 +3,6 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Required for GitHub Pages deployment
   output: "export",
-  basePath: "/my-portfolio",
-  
   // Disable the X-Powered-By header
   poweredByHeader: false,
   

@@ -80,7 +80,7 @@ export default function Contact({ profile }: { profile: Profile }) {
                 className="absolute top-full left-0 w-full flex flex-col gap-2 z-20"
               >
                 <a
-                  href="/my-portfolio/resume-backend.pdf"
+                  href="resume-backend.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={playClick}
@@ -90,7 +90,7 @@ export default function Contact({ profile }: { profile: Profile }) {
                   BACKEND
                 </a>
                 <a
-                  href="/my-portfolio/resume-ml.pdf"
+                  href="resume-ml.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={playClick}
