@@ -47,7 +47,7 @@ export function AppShell({
         </aside>
 
         {/* Main Content Area */}
-        <main className="flex-1 relative w-full pb-32">
+        <main className="flex-1 relative w-full overflow-x-hidden pb-32">
           <div className="max-w-4xl">
             {children}
           </div>

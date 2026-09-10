@@ -14,7 +14,7 @@ export function SectionReveal({ children, id, className }: { children: ReactNode
         opacity: 1,
         y: 0
       }}
-      viewport={{ once: true, margin: "-10%" }}
+      viewport={{ once: true }}
       transition={{ 
         duration: 0.7, 
         ease: [0.25, 0.46, 0.45, 0.94] // snappy P3R-style cubic bezier
