@@ -5,7 +5,8 @@ export interface ProfileAbout {
 }
 
 export interface ProfileContact {
-  email: string;
+  emailUser: string;
+  emailDomain: string;
   github: string;
   linkedin: string;
   twitter: string;

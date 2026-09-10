@@ -20,7 +20,9 @@ export const profile = {
     ]
   },
   contact: {
-    email: "siddharthamanu5@gmail.com",
+    // Split to deter automated email scraper harvesting from static JS bundles
+    emailUser: "siddharthamanu5",
+    emailDomain: "gmail.com",
     github: "Phenesin",
     linkedin: "siddhartha-manu",
     twitter: "Siddhartha49140"

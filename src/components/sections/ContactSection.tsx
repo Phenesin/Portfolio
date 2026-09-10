@@ -52,7 +52,7 @@ export default function Contact({ profile }: { profile: Profile }) {
         transition={{ delay: 0.4 }}
         className="text-lg md:text-xl text-p3-cyan font-mono tracking-widest mb-12 uppercase"
       >
-        reach out at: <a href={`mailto:${profile.contact.email}`} className="text-p3-yellow hover:underline lowercase">{profile.contact.email}</a>
+        reach out at: <a href={`mailto:${profile.contact.emailUser}@${profile.contact.emailDomain}`} className="text-p3-yellow hover:underline lowercase">{`${profile.contact.emailUser}@${profile.contact.emailDomain}`}</a>
       </motion.p>
       
       <div className="flex flex-wrap gap-4 md:gap-6 items-center justify-center w-full max-w-4xl relative">
