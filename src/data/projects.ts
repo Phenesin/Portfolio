@@ -17,12 +17,12 @@ export const projects = [
       "Integrated optimizers (SGD, Momentum, ADAM) to evaluate maximum accuracy"
     ],
     architecture: ["DRAW", "PREPROCESS", "MLP MODEL", "CONFIDENCE SCORE"],
-    github: "https://github.com/Phenesin"
+    github: "https://github.com/Phenesin/Hand-Written-Digit-Classifier"
   },
   {
-    id: "neural-style-transfer",
+    id: "art-net",
     number: "02",
-    title: "Neural Style Transfer",
+    title: "Art Net",
     category: "Computer Vision",
     technologies: [
       "PyTorch",
@@ -37,7 +37,7 @@ export const projects = [
       "Maintained near-original quality at target output dimensions"
     ],
     architecture: ["SOURCE IMAGE", "STYLE IMAGE", "VGG-19 FEATURES", "OUTPUT IMAGE"],
-    github: "https://github.com/Phenesin"
+    github: "https://github.com/Phenesin/ArtNet"
   },
   {
     id: "even-steven",
@@ -56,7 +56,7 @@ export const projects = [
       "Improved test accuracy from 85.04% to 87.14%"
     ],
     architecture: ["DATASET", "REGULARIZATION", "TRAINING/VALIDATION", "87.14% ACCURACY"],
-    github: "https://github.com/Phenesin"
+    github: "https://github.com/Phenesin/Even-Steven"
   },
   {
     id: "url-shortener",
@@ -82,6 +82,6 @@ export const projects = [
       "SQLALCHEMY",
       "SQLITE"
     ],
-    github: "https://github.com/Phenesin"
+    github: "https://github.com/Phenesin/URL-Shortner"
   }
 ];

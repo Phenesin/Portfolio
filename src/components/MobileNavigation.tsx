@@ -98,7 +98,7 @@ export function MobileNavigation({ navItems }: { navItems: NavItem[] }) {
                 {navItems.map((item, index) => {
                   const isActive = pathname.startsWith("/projects") && item.id === "projects" 
                     ? true 
-                    : pathname === item.path;
+                    : pathname === "/" && item.id === "home";
 
                   return (
                     <motion.div
@@ -106,7 +106,7 @@ export function MobileNavigation({ navItems }: { navItems: NavItem[] }) {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
-                      onClick={() => handleNavClick(item.path, item.id)}
+                      onClick={() => handleNavClick(`/#${item.id}`, item.id)}
                       className={clsx(
                         "p-5 text-2xl font-black tracking-widest clip-slanted uppercase overflow-hidden relative",
                         isActive 

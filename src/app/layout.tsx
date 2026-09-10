@@ -37,7 +37,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased snap-y snap-mandatory`}
     >
-      <body className="flex flex-col bg-p3-blue-dark">
+      <body suppressHydrationWarning className="flex flex-col bg-p3-blue-dark">
         <LoadingScreen />
         <ThemeProvider>
           <AudioProvider>
