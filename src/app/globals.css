@@ -125,3 +125,10 @@ body {
   background-size: 6px 6px;
   background-position: center;
 }
+
+/* Hide native cursor on desktop to let CustomCursor shine */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
