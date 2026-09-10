@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { Volume2, VolumeX } from "lucide-react";
+import { useTheme } from "./ThemeContext";
 
 export const SingleNoteIcon = ({ size = 24, className = "" }: { size?: number, className?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -40,8 +41,8 @@ export const useAudio = () => useContext(AudioContext);
 
 let hoverAudio: HTMLAudioElement | null = null;
 let clickAudio: HTMLAudioElement | null = null;
-let bgmAudio: HTMLAudioElement | null = null;
-const PLACEHOLDER_MUSIC_PATH = ""; // e.g. "/sounds/p3_bgm.mp3"
+let bgmLightAudio: HTMLAudioElement | null = null;
+let bgmDarkAudio: HTMLAudioElement | null = null;
 
 if (typeof window !== "undefined") {
   hoverAudio = new Audio("/sounds/p3_hover.wav");
@@ -51,28 +52,38 @@ if (typeof window !== "undefined") {
   clickAudio.playbackRate = 1.0;
   clickAudio.volume = 0.5;
 
-  if (PLACEHOLDER_MUSIC_PATH) {
-    bgmAudio = new Audio(PLACEHOLDER_MUSIC_PATH);
-    bgmAudio.loop = true;
-    bgmAudio.volume = 0.4;
-  }
+  bgmLightAudio = new Audio("/sounds/light_theme.mp3");
+  bgmLightAudio.loop = true;
+  bgmLightAudio.volume = 0.15;
+
+  bgmDarkAudio = new Audio("/sounds/dark_theme.mp3");
+  bgmDarkAudio.loop = true;
+  bgmDarkAudio.volume = 0.15;
 }
 
 export function AudioProvider({ children }: { children: ReactNode }) {
   const [sfxMuted, setSfxMuted] = useState(false);
   const [bgmMuted, setBgmMuted] = useState(true);
+  const { isDarkHour } = useTheme();
 
   useEffect(() => {
-    if (bgmAudio) {
+    const activeBgm = isDarkHour ? bgmDarkAudio : bgmLightAudio;
+    const inactiveBgm = isDarkHour ? bgmLightAudio : bgmDarkAudio;
+
+    if (inactiveBgm) {
+      inactiveBgm.pause();
+    }
+
+    if (activeBgm) {
       if (bgmMuted) {
-        bgmAudio.pause();
+        activeBgm.pause();
       } else {
-        bgmAudio.play().catch((err) => {
+        activeBgm.play().catch((err) => {
           if (process.env.NODE_ENV !== "production") console.warn("BGM play failed:", err);
         });
       }
     }
-  }, [bgmMuted]);
+  }, [isDarkHour, bgmMuted]);
 
   const playHover = () => {
     if (!sfxMuted && hoverAudio) {

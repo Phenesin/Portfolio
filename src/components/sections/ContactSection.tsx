@@ -30,7 +30,7 @@ export default function Contact({ profile }: { profile: Profile }) {
   const [resumeOpen, setResumeOpen] = useState(false);
 
   return (
-    <div className="h-full flex flex-col pt-12 pb-24 justify-center items-center text-center">
+    <div className="h-full flex flex-col justify-center items-center text-center">
       <AnimatedText 
         text="CONTACT"
         className="text-2xl md:text-3xl font-mono text-p3-cyan mb-4 tracking-[0.3em] uppercase"
@@ -128,6 +128,15 @@ export default function Contact({ profile }: { profile: Profile }) {
           </motion.a>
         ))}
       </div>
+
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.0 }}
+        className="mt-32 text-xs text-p3-white/30 font-mono text-center tracking-widest uppercase"
+      >
+        Music - Mass Destruction & Color your Night by Lotus Juice
+      </motion.div>
     </div>
   );
 }

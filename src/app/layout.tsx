@@ -35,7 +35,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased snap-y snap-mandatory`}
     >
       <body className="flex flex-col bg-p3-blue-dark">
         <LoadingScreen />
